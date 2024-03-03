@@ -26,7 +26,6 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   };
 
 
-
   return (
     <div className="fixed inset-0 z-50" style={overlayStyle}>
       {/* Overlay */}
