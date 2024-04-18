@@ -26,18 +26,21 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   };
 
   return (
-    <div className={`fixed inset-0 z-50 ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'} transition-opacity duration-300 ease-in-out`}>
+    <div className={`fixed inset-0 z-50 ` } style={overlayStyle} >
       <div className="absolute inset-0 bg-black bg-opacity-50" onClick={toggleSidebar} />
-      <div className={`absolute left-0 top-0 bottom-0 bg-[#131313] ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out sm:w-full md:w-2/3 lg:w-1/3 w-full`} style={sidebarStyle}>
+      <div className={`absolute left-0 top-0 bottom-0 bg-[#131313] sm:w-full md:w-2/3 lg:w-1/3 w-full`} style={sidebarStyle}>
         <button className="absolute top-0 right-0 m-8 text-white" onClick={toggleSidebar}>
           <AiOutlineClose className="text-3xl" />
         </button>
-        <div className="mt-24 text-white space-y-6 p-20">
+        <div className="mt-8 md:mt-16 lg:mt-24 text-white space-y-4 md:space-y-5 lg:space-y-6 p-8 md:p-16 lg:p-20">
           {menuItems.map((item, index) => (
             <NavLink
               key={index}
               to={item.path}
-              className={({ isActive }) => isActive ? 'active-link-sidebar block text-4xl transition-colors duration-200' : "block text-4xl hover:text-gray-300 transition-colors duration-200"}
+              className={({ isActive }) => 
+                isActive ? 
+                'active-link-sidebar block text-3xl lg:text-4xl transition-colors duration-200' :
+                "block text-3xl lg:text-4xl hover:text-gray-300 transition-colors duration-200"}
               onClick={toggleSidebar}
             >
               {item.name}

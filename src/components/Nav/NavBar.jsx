@@ -29,10 +29,11 @@ const NavBar = () => {
 
           {/* Icons on the right */}
           <div className="flex items-center space-x-6 mr-4 md:mr-8">
-            <IoIosSearch className="text-4xl cursor-pointer" />
-            <HiOutlineUserCircle className="text-4xl cursor-pointer" />
+            <IoIosSearch className="text-4xl cursor-pointer hidden lg:block" />
+            <HiOutlineUserCircle className="text-4xl cursor-pointer hidden lg:block" />
             <HiOutlineShoppingBag className="text-4xl cursor-pointer" />
           </div>
+
         </div>
       </nav>
 
