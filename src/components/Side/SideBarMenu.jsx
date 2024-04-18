@@ -1,21 +1,17 @@
-// Sidebar.js
+// SideBarMenu.js
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { AiOutlineClose } from 'react-icons/ai';
 
-import './NavBar.css'
-
-const Sidebar = ({ isOpen, toggleSidebar }) => {
+const SideBarMenu = ({ isOpen, toggleSidebar }) => {
   const menuItems = [
     { name: 'Accueil', path: '/' },
     { name: 'Spiritueux', path: '/spiritueux' },
     // ... autres éléments du menu
   ];
 
-  // Appliquez des styles en ligne ou des classes conditionnelles pour gérer la transition
   const overlayStyle = {
     opacity: isOpen ? 1 : 0,
-    // La visibilité ne doit pas empêcher l'opacité de transitionner.
     visibility: isOpen ? 'visible' : 'hidden',
     transition: `opacity 0.3s ease-in-out, visibility 0s ${isOpen ? '0s' : '0.3s'}`, // Ajustez le délai de visibilité basé sur l'état isOpen
   };
@@ -52,4 +48,4 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   );
 };
 
-export default Sidebar;
+export default SideBarMenu;
