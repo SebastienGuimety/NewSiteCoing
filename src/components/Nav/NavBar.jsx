@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
-import { IoIosSearch } from "react-icons/io";
+import { IoIosSearch, IoLogoXbox } from "react-icons/io";
 import { HiOutlineUserCircle, HiOutlineShoppingBag } from "react-icons/hi";
 import { useLocation } from 'react-router-dom';
 import SideBarMenu from '../Side/SideBarMenu';
@@ -46,10 +46,14 @@ const toggleCart = () => {
   return (
     <>
 
-      <nav className={` fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ease-in-out   ${isScrolled ? 'bg-neutral-800' : 'bg-transparent bg-white shadow-lg'}`}>
+      <nav className={` fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ease-in-out ${location.pathname === '/' ? 'bg-transparent' : 'bg-neutral-800'}  ${isScrolled ? 'bg-neutral-800' : 'bg-transparent shadow-lg'}`}>
         <div className="flex justify-between items-center mx-auto lg:px-0 xl:px-0 py-4 h-20">
           {/* Hamburger Menu Icon */}
-          <AiOutlineMenu className={`text-4xl cursor-pointer ml-4 md:ml-8 ${iconColor === 'gray-900' && isScrolled ? 'text-white' : `text-${iconColor}`}`} onClick={toggleMenu} />
+          <div className='ml-4 md:ml-8'>
+            <div className="hover:bg-slate-400 hover:bg-opacity-20 rounded-full p-2 transition-all duration-500 ">
+              <AiOutlineMenu className={`text-4xl cursor-pointer  ${iconColor === 'gray-900' && isScrolled ? 'text-white' : `text-${iconColor}`}`} onClick={toggleMenu} />
+            </div>
+          </div>
 
           {/* Logo in the center */}
             {/*
@@ -59,20 +63,22 @@ const toggleCart = () => {
             */}
           {/* Icons on the right */}
             <div className="flex items-center space-x-6 mr-4 md:mr-8">
-                <IoIosSearch className={`text-4xl cursor-pointer ${iconColor === 'gray-900' && isScrolled ? 'text-white' : `text-${iconColor}`}  hidden lg:block`}/>
-                <HiOutlineUserCircle className={`text-4xl cursor-pointer ${iconColor === 'gray-900' && isScrolled ? 'text-white' : `text-${iconColor}`} hidden lg:block`}/>
-                <HiOutlineShoppingBag className={`text-4xl cursor-pointer ${iconColor === 'gray-900' && isScrolled ? 'text-white' : `text-${iconColor}`} `} onClick={toggleCart}/>
+              <div className="hover:bg-slate-400 hover:bg-opacity-20  rounded-full p-2 transition-all duration-500 ">
+                <IoIosSearch className={`text-4xl cursor-pointer  ${iconColor === 'gray-900' && isScrolled ? 'text-white' : `text-${iconColor}`}  hidden lg:block`}/>
+              </div>
+              <div className="hover:bg-slate-400 hover:bg-opacity-20 rounded-full p-2 transition-all duration-500 ">
+                <HiOutlineUserCircle className={`text-4xl cursor-pointer  ${iconColor === 'gray-900' && isScrolled ? 'text-white' : `text-${iconColor}`} hidden lg:block`}/>
+              </div>
+              <div className="hover:bg-slate-400 hover:bg-opacity-20 rounded-full p-2 transition-all duration-500 ">
+                <HiOutlineShoppingBag className={`text-4xl cursor-pointer  ${iconColor === 'gray-900' && isScrolled ? 'text-white' : `text-${iconColor}`} `} onClick={toggleCart}/>
+              </div>
             </div>
-
-
         </div>
       </nav>
 
       {/* SideBarMenu Menu */}
         <SideBarMenu isOpen={isMenuOpen} toggleSidebar={toggleMenu} />
         <SideBarPanier isOpen={isCartOpen} toggleSidebar={toggleCart} />
-
-
 
     </>
   );
