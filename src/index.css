@@ -21,3 +21,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: 'BCMikserSemiBold';
+  src: url('font/fonnts.com-BC_Mikser_Regular.otf') format('opentype'); /* Adjust the path as necessary */
+  font-weight: normal;
+  font-style: normal;
+}
+
+.bg-darker {
+    filter: brightness(60%) contrast(120%);
+}
