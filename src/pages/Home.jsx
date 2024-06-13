@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useTransition, animated } from 'react-spring';
 import backgroundImage from '../assets/coudounat.jpeg';
 import backgroundImage2 from '../assets/petillant.jpeg';
@@ -11,7 +11,7 @@ export const Home = () => {
 
 
     const [index, setIndex] = useState(0);
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);  // État pour stocker la largeur de la fenêtre
 
     const transitions = useTransition(index, {
         from: { opacity: 0 },
@@ -32,14 +32,17 @@ export const Home = () => {
         setIndex(slideIndex);
     };
 
-    const getBackgroundSize = () => {
+    /** 
+    const getBackgroundSize = useMemo(() => {
+        console.log(windowWidth)
       if (windowWidth < 768) { // pour les tablettes et plus petits
-        return '150%'; // zoom plus grand pour éviter trop de rétrécissement
+        return 'cover'; // zoom plus grand pour éviter trop de rétrécissement
       } else {
         return '110%'; // zoom standard pour les grands écrans
       }
-    };
-
+    }, [windowWidth]);
+    */
+    
     const getBackgroundPosition = (currentUrl) => {
       // Vérifiez si l'URL de l'image courante contient le mot "coudounat"
       if (currentUrl.includes('coudounat')) {
@@ -61,8 +64,9 @@ export const Home = () => {
                                 width: '100%',
                                 height: '100%',
                                 backgroundPosition: getBackgroundPosition(slides[i].url),
-                                backgroundSize: getBackgroundSize(),
+                                backgroundSize: 'cover',
                                 backgroundRepeat: 'no-repeat',
+                                backgroundAttachment: 'fixed',  // Ajouté pour fixer l'image de fond
                                 position: 'absolute',
                                 top: 0,
                                 left: 0
@@ -79,15 +83,16 @@ export const Home = () => {
                         }}></div>
                     </>
                 ))}
-              </div>
-              
-                <div className="absolute top-80 left-1/2 transform -translate-x-1/2 text-6xl text-white">
-                    <p>DECOUVREZ NOTRE</p> {/* Texte ajustable */}
-                    <p className='text-center'>COLLECTION</p>
+            </div>
+            
+                <div className="absolute top-80 left-1/2 transform -translate-x-1/2  text-white">
+                    <p className='text-center sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>DECOUVREZ NOTRE COLLECTION</p> {/* Texte ajustable */}
+                    <div className='absolute hover:bg-gray-100 text-gray-800 top-40 left-1/2 transform -translate-x-1/2'>
+                        <button className="bg-white hover:bg-gray-300 text-black py-5 px-16 sm:py-4 sm:px-12 md:py-5 md:px-16">
+                            <div></div>ON CLIQUE
+                        </button>   
+                    </div>
                 </div>
-
-                    <button className="btn btn-xs  top-100 sm:btn-sm md:btn-md lg:btn-lg">Responsive</button>
-
 
                 <div className='absolute bottom-0 left-0 right-0 flex justify-center mb-8'>
                     {slides.map((slide, slideIndex) => (
