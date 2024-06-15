@@ -4,7 +4,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['BCMikserSemiBold', 'system-ui', 'sans-serif'], // Ajoutez votre police personnalisée
+        sans: ['BCMikserSemiBold', 'system-ui', 'sans-serif'], 
+        nunito: ['Nunito', 'system-ui', 'sans-serif'],
       },
       keyframes: {
         slideIn: {

@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 import SideBarMenu from '../Side/SideBarMenu';
 import SideBarPanier from '../Side/SideBarPanier';
 import logoImage from '../../assets/logoreal.png';  // Assurez-vous que le chemin vers votre logo est correct
+import { NavLink } from 'react-router-dom';
 
 import "./NavBar.css"
 
@@ -59,11 +60,13 @@ const NavBar = ( ) => {
 
                     <div className="flex justify-center items-center">
                       {isScrolled ? (
-                            <div className="text-xl font-sans font-bold text-white">AuCoingDuVentoux</div>
+                            <NavLink to="/" className="text-xl font-sans font-bold text-white">
+                                AuCoingDuVentoux
+                            </NavLink>
                           
                       ) : (
                           <div className="absolute top-[20px] left-1/2 transform -translate-x-1/2">
-                            <img src={logoImage} alt="Logo" className="h-40 lg:h-40 md:h-28 sm:h-20 xs:h-14 2xs:h-12" /> 
+                            <img src={logoImage} alt="Logo" className="h-40 lg:h-40 md:h-28 sm:h-20 xs:h-14 2xs:h-12" onClick={ console.log("ah oui")} /> 
                         </div>
                       )}
                     </div>

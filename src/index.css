@@ -29,6 +29,13 @@ code {
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Nunito';
+  src: url('font/Nunito-VariableFont_wght.ttf') format('opentype'); /* Adjust the path as necessary */
+  font-weight: normal;
+  font-style: normal;
+}
+
 .bg-darker {
     filter: brightness(60%) contrast(120%);
 }

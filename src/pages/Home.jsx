@@ -2,6 +2,8 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useTransition, animated } from 'react-spring';
 import backgroundImage from '../assets/coudounat.jpeg';
 import backgroundImage2 from '../assets/petillant.jpeg';
+import Button from '../components/Buttons/Button'; // Assurez-vous que le chemin d'importation est correct
+
 
 export const Home = () => {
     const slides = [
@@ -85,12 +87,12 @@ export const Home = () => {
                 ))}
             </div>
             
-                <div className="absolute top-80 left-1/2 transform -translate-x-1/2  text-white">
-                    <p className='text-center sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>DECOUVREZ NOTRE COLLECTION</p> {/* Texte ajustable */}
-                    <div className='absolute hover:bg-gray-100 text-gray-800 top-40 left-1/2 transform -translate-x-1/2'>
-                        <button className="bg-white hover:bg-gray-300 text-black py-5 px-16 sm:py-4 sm:px-12 md:py-5 md:px-16">
-                            <div></div>ON CLIQUE
-                        </button>   
+                <div className="absolute top-80 left-1/2 transform -translate-x-1/2 w-4/5 text-white">
+                    <p className='text-center font-nunito font-bold text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>DECOUVREZ NOTRE COLLECTION</p> {/* Texte ajustable */}
+                    <p className='relative font-nunito text-center top-6 text-lg sm:text-xl md:text-1xl lg:text-xl xl:text-2xl'>Description a mettre, a voir apres ce qu'on peut mettre mais voial </p> {/* Texte ajustable */}
+
+                    <div className='absolute hover:bg-gray-100 text-gray-800 top-40 sm:top-40  md:top-40 xl:top-48 left-1/2 transform -translate-x-1/2'>
+                        <Button text="Cliquez ici" onClick={() => console.log("Bouton cliqué!")} variant="ok" />
                     </div>
                 </div>
 
@@ -104,8 +106,13 @@ export const Home = () => {
                     ))}
                 </div>
 
-            <div>
-                <p className='font-sans'> bah oui</p>
+            <div className='pt-10 pb-10 pr-20 pl-20  xl:pt-40 xl:pb-40 xl:pr-20 xl:pl-20  md:pt-40 md:pb-40 md:pr-20 md:pl-20  sm:pt-30 sm:pb-30 sm:pr-20 sm:pl-20'>
+                <p className='text-center font-nunito text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold'> 
+                    La première distillerie <br></br>située au coeur de paris
+                </p>
+                <p className='pt-8 text-center font-nunito text-xl'>
+                    Ah oui
+                </p>
             </div>
         </>
     );
