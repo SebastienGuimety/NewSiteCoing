@@ -2,8 +2,17 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { AiOutlineClose } from 'react-icons/ai';
+import { useTranslation } from 'react-i18next';
+
 
 const SideBarMenu = ({ isOpen, toggleSidebar }) => {
+
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+  
   const menuItems = [
     { name: 'Accueil', path: '/' },
     { name: 'Spiritueux', path: '/spiritueux' },

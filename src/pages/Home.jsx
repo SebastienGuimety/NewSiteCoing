@@ -3,9 +3,13 @@ import { useTransition, animated } from 'react-spring';
 import backgroundImage from '../assets/coudounat.jpeg';
 import backgroundImage2 from '../assets/petillant.jpeg';
 import Button from '../components/Buttons/Button'; // Assurez-vous que le chemin d'importation est correct
+import { useTranslation, Trans } from 'react-i18next';
 
 
 export const Home = () => {
+    
+    const { t, i18n } = useTranslation();
+
     const slides = [
         { id: 1, url: backgroundImage },
         { id: 2, url: backgroundImage2 },
@@ -88,8 +92,8 @@ export const Home = () => {
             </div>
             
                 <div className="absolute top-80 left-1/2 transform -translate-x-1/2 w-4/5 text-white">
-                    <p className='text-center font-nunito font-bold text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>DECOUVREZ NOTRE COLLECTION</p> {/* Texte ajustable */}
-                    <p className='relative font-nunito text-center top-6 text-lg sm:text-xl md:text-1xl lg:text-xl xl:text-2xl'>Description a mettre, a voir apres ce qu'on peut mettre mais voial </p> {/* Texte ajustable */}
+                    <p className='text-center font-nunito font-bold text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'>{t('home.title')}</p> {/* Texte ajustable */}
+                    <p className='relative font-nunito text-center top-6 text-lg sm:text-xl md:text-1xl lg:text-xl xl:text-2xl'>{t('home.description')} </p> {/* Texte ajustable */}
 
                     <div className='absolute hover:bg-gray-100 text-gray-800 top-40 sm:top-40  md:top-40 xl:top-48 left-1/2 transform -translate-x-1/2'>
                         <Button text="Cliquez ici" onClick={() => console.log("Bouton cliqué!")} variant="ok" />
@@ -106,12 +110,21 @@ export const Home = () => {
                     ))}
                 </div>
 
+            <div className='pt-10  pr-20 pl-20  xl:pt-40  xl:pr-20 xl:pl-20  md:pt-40  md:pr-20 md:pl-20  sm:pt-30  sm:pr-20 sm:pl-20'>
+                <p className='text-center font-nunito text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold'> 
+                    <Trans i18nKey="home.section1.title"></Trans>
+                </p>
+                <p className='pt-10 text-center font-nunito text-xl xl:pl-40 xl:pr-40'>
+                    {t('home.section1.description')}
+                </p>
+            </div>
+
             <div className='pt-10 pb-10 pr-20 pl-20  xl:pt-40 xl:pb-40 xl:pr-20 xl:pl-20  md:pt-40 md:pb-40 md:pr-20 md:pl-20  sm:pt-30 sm:pb-30 sm:pr-20 sm:pl-20'>
                 <p className='text-center font-nunito text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold'> 
-                    La première distillerie <br></br>située au coeur de paris
+                    <Trans i18nKey="home.section2.title"></Trans>
                 </p>
-                <p className='pt-8 text-center font-nunito text-xl'>
-                    Ah oui
+                <p className='pt-10 text-center font-nunito text-xl xl:pl-40 xl:pr-40'>
+                    {t('home.section2.description')}
                 </p>
             </div>
         </>
