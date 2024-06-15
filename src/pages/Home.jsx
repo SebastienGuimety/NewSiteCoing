@@ -4,6 +4,8 @@ import backgroundImage from '../assets/coudounat.jpeg';
 import backgroundImage2 from '../assets/petillant.jpeg';
 import Button from '../components/Buttons/Button'; // Assurez-vous que le chemin d'importation est correct
 import { useTranslation, Trans } from 'react-i18next';
+import ProductCard from '../components/Cards/ProductCard';
+import Product from '../components/Cards/Products';
 
 
 export const Home = () => {
@@ -119,13 +121,17 @@ export const Home = () => {
                 </p>
             </div>
 
-            <div className='pt-10 pb-10 pr-20 pl-20  xl:pt-40 xl:pb-40 xl:pr-20 xl:pl-20  md:pt-40 md:pb-40 md:pr-20 md:pl-20  sm:pt-30 sm:pb-30 sm:pr-20 sm:pl-20'>
+            <div className='pt-10  pr-20 pl-20  xl:pt-40  xl:pr-20 xl:pl-20  md:pt-40  md:pr-20 md:pl-20  sm:pt-30  sm:pr-20 sm:pl-20'>
                 <p className='text-center font-nunito text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold'> 
                     <Trans i18nKey="home.section2.title"></Trans>
                 </p>
                 <p className='pt-10 text-center font-nunito text-xl xl:pl-40 xl:pr-40'>
                     {t('home.section2.description')}
                 </p>
+            </div>
+
+            <div className='pt-10 pr-20 pl-20  xl:pt-10 xl:pr-20 xl:pl-20  md:pt-10  md:pr-20 md:pl-20  sm:pt-10  sm:pr-20 sm:pl-20'>
+                <Product/>    
             </div>
         </>
     );
