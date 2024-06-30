@@ -33,7 +33,7 @@ const SideBarMenu = ({ isOpen, toggleSidebar }) => {
   return (
     <div className={`fixed inset-0 z-50 ` } style={overlayStyle} >
       <div className="absolute inset-0 bg-black bg-opacity-50" onClick={toggleSidebar} />
-      <div className={`absolute left-0 top-0 bottom-0 bg-[#131313] sm:w-full md:w-2/3 lg:w-1/3 w-full`} style={sidebarStyle}>
+      <div className={`absolute left-0 top-0 bottom-0 bg-[#131313] sm:w-full md:w-2/3 lg:w-2/5 w-full`} style={sidebarStyle}>
         <button className="absolute top-0 right-0 m-8 text-white" onClick={toggleSidebar}>
           <AiOutlineClose className="text-3xl" />
         </button>

@@ -1,27 +1,11 @@
 // src/pages/Products.js
 import React, { useState } from 'react';
 import ProductCard from './ProductCard';
-import petillantImage from '../../assets/petillant-sf.png';
-import coudounatImage from '../../assets/coudounat-sf.png';
-
+import products from '../../data/products';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 
 const Products = () => {
-  const products = [
-    {
-      image: petillantImage,
-      title: "GIN - BEL AIR",
-      description: "Distillerie de Paris",
-      price: "€47,00",
-    },
-    {
-      image: coudounatImage,
-      title: "RHUM - PANELA",
-      description: "Distillerie de Paris",
-      price: "€49,00",
-    },
-  ];
 
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
   const [direction, setDirection] = useState('');
@@ -57,8 +41,9 @@ const Products = () => {
         <div className="hidden md:flex justify-center space-x-40">
           {products.map((product, index) => (
             <ProductCard
-              key={index}
-              image={product.image}
+              key={product.id}
+              id={product.id}
+              image={product.imageSm}
               title={product.title}
               description={product.description}
               price={product.price}
@@ -67,7 +52,9 @@ const Products = () => {
         </div>
         <div className={`flex flex-col items-center md:hidden transition-transform duration-500 transform ${direction === 'right' ? 'translate-x-full' : direction === 'left' ? '-translate-x-full' : ''}`}>
           <ProductCard
-            image={products[currentProductIndex].image}
+            id={products[currentProductIndex].id}
+            key={products[currentProductIndex].id}
+            image={products[currentProductIndex].imageSm}
             title={products[currentProductIndex].title}
             description={products[currentProductIndex].description}
             price={products[currentProductIndex].price}
