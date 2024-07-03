@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import products from '../../data/products';
 import Button from '../../components/Buttons/Button'; 
 import QuantitySelector from '../../components/Buttons/QuantitySelector'; 
+import { FaTruck, FaLock, FaEnvelope } from 'react-icons/fa'; // Import the icons from react-icons
+import { FiChevronDown, FiChevronUp } from 'react-icons/fi'; // Import the chevron icons
+import DropdownButton from '../../components/Buttons/DropdownButton'; // Import the new DropdownSection component
 
 const ProductDetail = () => {
   const { id } = useParams();
   const product = products.find((product) => product.id === id);
+
+  const [expandedSections, setExpandedSections] = useState({
+    delivery: false,
+    payment: false,
+    contact: false,
+  });
+
+  const toggleSection = (section) => {
+    setExpandedSections((prevState) => ({
+      ...prevState,
+      [section]: !prevState[section],
+    }));
+  };
 
   if (!product) {
     return <div>Product not found</div>;
@@ -43,6 +59,31 @@ const ProductDetail = () => {
           <div className="mt-8">
             <h2 className="text-2xl font-bold">Description</h2>
             <p className="mt-2 text-gray-700 break-words">{product.description}</p>
+          </div>
+
+
+          <div className="mt-8 space-y-4">
+            <DropdownButton
+              icon={FaTruck}
+              title="Livraison rapide"
+              content="Livraison en 48 - 72h en France métropolitaine."
+              isOpen={expandedSections.delivery}
+              onClick={() => toggleSection('delivery')}
+            />
+            <DropdownButton
+              icon={FaLock}
+              title="Paiement sécurisé"
+              content="Paiement 100% sécurisé via notre plateforme."
+              isOpen={expandedSections.payment}
+              onClick={() => toggleSection('payment')}
+            />
+            <DropdownButton
+              icon={FaEnvelope}
+              title="Contactez-nous"
+              content="Pour toute question, contactez-nous par email ou téléphone."
+              isOpen={expandedSections.contact}
+              onClick={() => toggleSection('contact')}
+            />
           </div>
         </div>
       </div>
