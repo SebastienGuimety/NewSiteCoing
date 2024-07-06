@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { AiOutlineMenu } from 'react-icons/ai';
-import { IoIosSearch } from "react-icons/io";
-import { HiOutlineUserCircle, HiOutlineShoppingBag } from "react-icons/hi";
+import { CiMenuBurger, CiShoppingCart, CiSearch } from "react-icons/ci";
 import { useLocation } from 'react-router-dom';
 import SideBarMenu from '../Side/SideBarMenu';
 import SideBarPanier from '../Side/SideBarPanier';
 import logoImage from '../../assets/img/logoreal.png';  // Assurez-vous que le chemin vers votre logo est correct
 import { NavLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 import "./NavBar.css"
 
@@ -16,6 +15,9 @@ const NavBar = ( ) => {
     const [isCartOpen, setIsCartOpen] = useState(false);
     const location = useLocation();
     const isHomePage = location.pathname === '/';
+
+    const cartItems = useSelector((state) => state.cartItems);
+    const dispatch = useDispatch();
 
     const backgroundColor = isScrolled ? 'bg-[#131313]	' : 'bg-transparent'; // Modifier la couleur de fond uniquement sur la page d'accueil
 
@@ -54,7 +56,7 @@ const NavBar = ( ) => {
                      {/* Hamburger Menu Icon */}
                     <div className='ml-4 md:ml-8 flex justify-start'>
                         <div className="hover:bg-slate-400 hover:bg-opacity-20 rounded-full p-2 transition-all duration-500 ">
-                            <AiOutlineMenu className={`text-4xl cursor-pointer ${isHomePage ? (isScrolled ?  'text-white' : 'text-white' ) : (isScrolled ? 'text-white' : 'text-gray-900')}`} onClick={toggleMenu} />
+                            <CiMenuBurger className={`text-4xl cursor-pointer ${isHomePage ? (isScrolled ?  'text-white' : 'text-white' ) : (isScrolled ? 'text-white' : 'text-gray-900')}`} onClick={toggleMenu} />
                         </div>
                     </div>
 
@@ -76,11 +78,11 @@ const NavBar = ( ) => {
                     {/* Icons on the right */}
                     <div className="flex items-center space-x-6 mr-4 md:mr-8 justify-end">
                         <div className="hover:bg-slate-400 hover:bg-opacity-20  rounded-full p-2 transition-all duration-500 ">
-                            <IoIosSearch className={`text-4xl cursor-pointer ${isHomePage ? (isScrolled ?  'text-white' : 'text-white' ) : (isScrolled ? 'text-white' : 'text-gray-900')} hidden lg:block`} />
+                            <CiSearch className={`text-4xl cursor-pointer ${isHomePage ? (isScrolled ?  'text-white' : 'text-white' ) : (isScrolled ? 'text-white' : 'text-gray-900')} hidden lg:block`} />
                         </div>
                     
                         <div className="hover:bg-slate-400 hover:bg-opacity-20 rounded-full p-2 transition-all duration-500 ">
-                            <HiOutlineShoppingBag className={`text-4xl cursor-pointer ${isHomePage ? (isScrolled ?  'text-white' : 'text-white' ) : (isScrolled ? 'text-white' : 'text-gray-900')}`} onClick={toggleCart} />
+                            <CiShoppingCart className={`text-4xl cursor-pointer ${isHomePage ? (isScrolled ?  'text-white' : 'text-white' ) : (isScrolled ? 'text-white' : 'text-gray-900')}`} onClick={toggleCart} />
                         </div>
                     </div>
                   </div>
@@ -89,7 +91,7 @@ const NavBar = ( ) => {
 
             {/* SideBarMenu Menu */}
             <SideBarMenu isOpen={isMenuOpen} toggleSidebar={toggleMenu} />
-            <SideBarPanier isOpen={isCartOpen} toggleSidebar={toggleCart} />
+            <SideBarPanier isOpen={isCartOpen} toggleSidebar={toggleCart} cartItems={cartItems} />
 
         </>
     );

@@ -6,10 +6,15 @@ import QuantitySelector from '../../components/Buttons/QuantitySelector';
 import { FaTruck, FaLock, FaEnvelope } from 'react-icons/fa'; // Import the icons from react-icons
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi'; // Import the chevron icons
 import DropdownButton from '../../components/Buttons/DropdownButton'; // Import the new DropdownSection component
-
+import RightSidebar from '../../components/Side/SideBarPanier';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../redux/cartSlice';
 const ProductDetail = () => {
   const { id } = useParams();
   const product = products.find((product) => product.id === id);
+
+  const dispatch = useDispatch()
+
 
   const [expandedSections, setExpandedSections] = useState({
     delivery: false,
@@ -17,12 +22,27 @@ const ProductDetail = () => {
     contact: false,
   });
 
+  const [isCartSidebarOpen, setIsCartSidebarOpen] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
+
   const toggleSection = (section) => {
     setExpandedSections((prevState) => ({
       ...prevState,
       [section]: !prevState[section],
     }));
   };
+
+  const toggleCartSidebar = () => {
+    setIsCartSidebarOpen(!isCartSidebarOpen);
+  };
+
+  const addToCartt = () => {
+    dispatch(addToCart({
+      id:product.id, title:product.title, image:product.imageLg, price:product.price
+    }))
+    toggleCartSidebar();
+  };
+
 
   if (!product) {
     return <div>Product not found</div>;
@@ -54,7 +74,7 @@ const ProductDetail = () => {
             </div>
           </div>
           <div className="flex justify-center md:justify-start mt-4 w-full">
-            <Button text="Cliquez ici" onClick={() => console.log("Bouton cliqué!")} variant="black" className="w-full" />
+            <Button text="Ajouter au panier" onClick={addToCartt} variant="black" className="w-full" />
           </div>
           <div className="mt-8">
             <h2 className="text-2xl font-bold">Description</h2>
@@ -87,7 +107,12 @@ const ProductDetail = () => {
           </div>
         </div>
       </div>
+      <RightSidebar
+        isOpen={isCartSidebarOpen}
+        toggleSidebar={toggleCartSidebar}
+      />
     </div>
+    
   );
 };
 

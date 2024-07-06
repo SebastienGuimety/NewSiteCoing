@@ -2,8 +2,23 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { AiOutlineClose } from 'react-icons/ai';
+import { FaTrashAlt } from 'react-icons/fa'; // Import trash icon
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import PanierCard from '../Cards/PanierCard';
 
 const RightSidebar = ({ isOpen, toggleSidebar }) => {
+
+    const dispatch = useDispatch();
+
+    const getTotalQuantity = () => {
+        let total = 0
+        cart.forEach(item => {
+          total += item.quantity
+        })
+        return total
+      }
+
     const menuItems = [
         { name: 'Panier', path: '/cart' },
         // ... autres éléments spécifiques au panier
@@ -20,6 +35,9 @@ const RightSidebar = ({ isOpen, toggleSidebar }) => {
         transition: 'transform 0.3s ease-in-out',
     };
 
+    const cart = useSelector((state) => state.cart)
+
+
     return (
         <div className="fixed inset-0 z-50" style={overlayStyle}>
             <div className="absolute inset-0 bg-black bg-opacity-50" onClick={toggleSidebar} />
@@ -27,17 +45,30 @@ const RightSidebar = ({ isOpen, toggleSidebar }) => {
                 <button className="absolute top-0 right-0 m-8 text-white" onClick={toggleSidebar}>
                     <AiOutlineClose className="text-3xl" />
                 </button>
-                <div className="mt-8 md:mt-16 lg:mt-24 text-white space-y-4 md:space-y-5 lg:space-y-6 p-8 md:p-16 lg:p-20">
-                    {menuItems.map((item, index) => (
-                        <NavLink
-                            key={index}
-                            to={item.path}
-                            className="block text-3xl lg:text-4xl hover:text-gray-300 transition-colors duration-200"
-                            onClick={toggleSidebar}
-                        >
-                            {item.name}
-                        </NavLink>
-                    ))}
+                <div className="mt-8 md:mt-16 lg:mt-24 text-white p-8 md:p-16 lg:p-20">
+                    <h2 className="text-xl font-bold">Votre panier</h2>
+                    <div className="mt-4 space-y-4">
+                        {cart.length === 0 ? (
+                            <p className="text-gray-500">Votre panier est vide</p>
+                        ) : (
+                            cart.map((item, index) => (
+                                <PanierCard key={index} item={item} />
+                            ))
+                        )}
+                    </div>
+                    <div className="mt-8 text-white">
+                        <div className="flex justify-between">
+                            <span>Sous-total</span>
+                        </div>
+                    </div>
+                    <div className="mt-8">
+                        <button className="w-full bg-black text-white py-3 rounded mb-4" onClick={() => console.log("Go to cart")}>
+                            Aller au panier
+                        </button>
+                        <button className="w-full bg-white text-black py-3 rounded" onClick={() => console.log("Checkout")}>
+                            Commander
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
