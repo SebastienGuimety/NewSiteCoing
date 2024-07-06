@@ -1,7 +1,7 @@
-import petillantImage from '../assets/petillant-sf.png';
-import coudounatImage from '../assets/coudounat-sf.png';
-import petillantImageGros from '../assets/petillant-sfnon.png';
-import coudounatImageGros from '../assets/coudounat-sfnon.png';
+import petillantImage from '../assets/img/petillant-sf.png';
+import coudounatImage from '../assets/img/coudounat-sf.png';
+import petillantImageGros from '../assets/img/petillant-sfnon.png';
+import coudounatImageGros from '../assets/img/coudounat-sfnon.png';
 const products = [
     {
         id: 'petillant',

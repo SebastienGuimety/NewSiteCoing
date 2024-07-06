@@ -67,7 +67,7 @@ const SideBarMenu = ({ isOpen, toggleSidebar }) => {
             <div>
               <div
                 onClick={() => setIsLanguageMenuOpen(false)}
-                className="text-white text-4xl mb-4 hover:text-gray-300 transition-colors duration-200 flex items-center cursor-pointer mb-10"
+                className="text-white text-4xl hover:text-gray-300 transition-colors duration-200 flex items-center cursor-pointer mb-10"
               >
                                 <span>Language</span>
 

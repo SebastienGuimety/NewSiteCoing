@@ -5,7 +5,7 @@ import { HiOutlineUserCircle, HiOutlineShoppingBag } from "react-icons/hi";
 import { useLocation } from 'react-router-dom';
 import SideBarMenu from '../Side/SideBarMenu';
 import SideBarPanier from '../Side/SideBarPanier';
-import logoImage from '../../assets/logoreal.png';  // Assurez-vous que le chemin vers votre logo est correct
+import logoImage from '../../assets/img/logoreal.png';  // Assurez-vous que le chemin vers votre logo est correct
 import { NavLink } from 'react-router-dom';
 
 import "./NavBar.css"
@@ -78,9 +78,7 @@ const NavBar = ( ) => {
                         <div className="hover:bg-slate-400 hover:bg-opacity-20  rounded-full p-2 transition-all duration-500 ">
                             <IoIosSearch className={`text-4xl cursor-pointer ${isHomePage ? (isScrolled ?  'text-white' : 'text-white' ) : (isScrolled ? 'text-white' : 'text-gray-900')} hidden lg:block`} />
                         </div>
-                        <div className="hover:bg-slate-400 hover:bg-opacity-20 rounded-full p-2 transition-all duration-500 ">
-                            <HiOutlineUserCircle className={`text-4xl cursor-pointer ${isHomePage ? (isScrolled ?  'text-white' : 'text-white' ) : (isScrolled ? 'text-white' : 'text-gray-900')} hidden lg:block`} />
-                        </div>
+                    
                         <div className="hover:bg-slate-400 hover:bg-opacity-20 rounded-full p-2 transition-all duration-500 ">
                             <HiOutlineShoppingBag className={`text-4xl cursor-pointer ${isHomePage ? (isScrolled ?  'text-white' : 'text-white' ) : (isScrolled ? 'text-white' : 'text-gray-900')}`} onClick={toggleCart} />
                         </div>

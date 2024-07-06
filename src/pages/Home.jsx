@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useTransition, animated } from 'react-spring';
-import backgroundImage from '../assets/coudounat.jpeg';
-import backgroundImage2 from '../assets/petillant.jpeg';
+import backgroundImage from '../assets/img/coudounat.jpeg';
+import backgroundImage2 from '../assets/img/petillant.jpeg';
 import Button from '../components/Buttons/Button'; // Assurez-vous que le chemin d'importation est correct
 import { useTranslation, Trans } from 'react-i18next';
 import ProductCard from '../components/Cards/ProductCard';
