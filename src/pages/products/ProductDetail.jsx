@@ -23,7 +23,7 @@ const ProductDetail = () => {
   });
 
   const [isCartSidebarOpen, setIsCartSidebarOpen] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
 
   const toggleSection = (section) => {
     setExpandedSections((prevState) => ({
@@ -38,7 +38,7 @@ const ProductDetail = () => {
 
   const addToCartt = () => {
     dispatch(addToCart({
-      id:product.id, title:product.title, image:product.imageLg, price:product.price
+      id:product.id, title:product.title, image:product.imageLg, price:product.price, quantity: selectedQuantity
     }))
     toggleCartSidebar();
   };
@@ -70,7 +70,7 @@ const ProductDetail = () => {
           <div className="mt-4 md:text-left">
             <p className="font-bold">Quantity</p>
             <div className="flex md:justify-start mt-2">
-                <QuantitySelector />
+              <QuantitySelector onQuantityChange={setSelectedQuantity} />
             </div>
           </div>
           <div className="flex justify-center md:justify-start mt-4 w-full">

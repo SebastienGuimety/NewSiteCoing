@@ -37,11 +37,14 @@ const RightSidebar = ({ isOpen, toggleSidebar }) => {
 
     const cart = useSelector((state) => state.cart)
 
+    const calculateSubtotal = () => {
+        return cart.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
+      };
 
     return (
         <div className="fixed inset-0 z-50" style={overlayStyle}>
             <div className="absolute inset-0 bg-black bg-opacity-50" onClick={toggleSidebar} />
-            <div className="absolute right-0 top-0 bottom-0 bg-[#131313] sm:w-full md:w-2/3 lg:w-1/3 w-full" style={sidebarStyle}>
+            <div className="absolute right-0 top-0 bottom-0 bg-[#131313] sm:w-full md:w-2/3 lg:w-2/5 w-full" style={sidebarStyle}>
                 <button className="absolute top-0 right-0 m-8 text-white" onClick={toggleSidebar}>
                     <AiOutlineClose className="text-3xl" />
                 </button>
@@ -56,19 +59,24 @@ const RightSidebar = ({ isOpen, toggleSidebar }) => {
                             ))
                         )}
                     </div>
-                    <div className="mt-8 text-white">
-                        <div className="flex justify-between">
-                            <span>Sous-total</span>
-                        </div>
-                    </div>
-                    <div className="mt-8">
-                        <button className="w-full bg-black text-white py-3 rounded mb-4" onClick={() => console.log("Go to cart")}>
-                            Aller au panier
-                        </button>
-                        <button className="w-full bg-white text-black py-3 rounded" onClick={() => console.log("Checkout")}>
-                            Commander
-                        </button>
-                    </div>
+                    {cart.length > 0 && (
+                        <>
+                            <div className="mt-8 text-white">
+                                <div className="flex justify-between">
+                                    <span>Sous-total</span>
+                                    <span>{calculateSubtotal()} €</span>
+                                    </div>
+                            </div>
+                            <div className="mt-8">
+                                <button className="w-full bg-black text-white py-3 rounded mb-4" onClick={() => console.log("Go to cart")}>
+                                    Aller au panier
+                                </button>
+                                <button className="w-full bg-white text-black py-3 rounded" onClick={() => console.log("Checkout")}>
+                                    Commander
+                                </button>
+                            </div>
+                        </>
+                    )}
                 </div>
             </div>
         </div>

@@ -1,25 +1,28 @@
 import React, { useState } from 'react';
-import './QuantitySelector.css'; // Ensure you import the CSS file
+import './QuantitySelector.css'; // Assurez-vous d'importer le fichier CSS
 import PlusIcon from '../../assets/svgs/PlusIcon';
 import MinusIcon from '../../assets/svgs/MinusIcon';
-const QuantitySelector = () => {
+
+const QuantitySelector = ({ onQuantityChange }) => {
   const [quantity, setQuantity] = useState(1);
 
   const handleIncrement = () => {
-    setQuantity(prevQuantity => prevQuantity + 1);
+    const newQuantity = quantity + 1;
+    setQuantity(newQuantity);
+    onQuantityChange(newQuantity);
   };
 
   const handleDecrement = () => {
-    setQuantity(prevQuantity => Math.max(1, prevQuantity - 1));
+    const newQuantity = Math.max(1, quantity - 1);
+    setQuantity(newQuantity);
+    onQuantityChange(newQuantity);
   };
 
   const handleChange = (e) => {
     const value = parseInt(e.target.value, 10);
-    if (!isNaN(value) && value > 0) {
-      setQuantity(value);
-    } else {
-      setQuantity(1);
-    }
+    const newQuantity = !isNaN(value) && value > 0 ? value : 1;
+    setQuantity(newQuantity);
+    onQuantityChange(newQuantity);
   };
 
   return (
@@ -29,7 +32,6 @@ const QuantitySelector = () => {
         className="bg-white text-black px-4 py-2 rounded-l-md focus:outline-none flex items-center justify-center transition-colors duration-700 hover:bg-gray-200"
       >
         <MinusIcon size={20} />
-
       </button>
       <input
         type="number"
@@ -42,7 +44,6 @@ const QuantitySelector = () => {
         className="bg-white text-black px-4 py-2 rounded-r-md focus:outline-none flex items-center justify-center transition-colors duration-700 hover:bg-gray-200"
       >
         <PlusIcon size={20} />
-
       </button>
     </div>
   );
