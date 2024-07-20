@@ -6,6 +6,7 @@ import  ProductDetail  from "./pages/products/ProductDetail";
 import ScrollToTop from './components/Nav/ScrollToTop';  // Assurez-vous que le chemin est correct
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
+import FullPanier from "./pages/Panier/FullPanier";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home/>}/>
               <Route path="/spiritueux" element={<Boutique/>}/>
+              <Route path="/fullpanier" element={<FullPanier/>}/>
               <Route path="/product/:id" element={<ProductDetail />} />
             </Routes>
           </Provider>

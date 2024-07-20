@@ -11,7 +11,7 @@ const PanierCard = ({ item }) => {
 
   return (
     <div className="flex items-center text-white">
-      <img src={item.image} alt={item.title} className="w-16 h-16 object-contain" />
+      <img src={item.image} alt={item.title} className="w-20 h-28 object-contain" />
       <div className="ml-4 flex-1">
         <h3 className="text-lg font-semibold">{item.title}</h3>
         <p>{        console.log(item)}</p>

@@ -3,7 +3,7 @@ import './QuantitySelector.css'; // Assurez-vous d'importer le fichier CSS
 import PlusIcon from '../../assets/svgs/PlusIcon';
 import MinusIcon from '../../assets/svgs/MinusIcon';
 
-const QuantitySelector = ({ onQuantityChange }) => {
+const QuantitySelector = ({ onQuantityChange, showInput = true }) => {
   const [quantity, setQuantity] = useState(1);
 
   const handleIncrement = () => {
@@ -33,12 +33,14 @@ const QuantitySelector = ({ onQuantityChange }) => {
       >
         <MinusIcon size={20} />
       </button>
-      <input
-        type="number"
-        value={quantity}
-        onChange={handleChange}
-        className="w-16 text-center focus:outline-none"
-      />
+      {showInput && (
+        <input
+          type="number"
+          value={quantity}
+          onChange={handleChange}
+          className="w-16 text-center focus:outline-none"
+        />
+      )}
       <button
         onClick={handleIncrement}
         className="bg-white text-black px-4 py-2 rounded-r-md focus:outline-none flex items-center justify-center transition-colors duration-700 hover:bg-gray-200"

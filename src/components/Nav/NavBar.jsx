@@ -83,12 +83,12 @@ const NavBar = ( ) => {
 
                     {/* Icons on the right */}
                     <div className="flex items-center space-x-6 mr-4 md:mr-8 justify-end">
-                        <div className="hover:bg-slate-400 hover:bg-opacity-20  rounded-full p-2 transition-all duration-500 ">
-                            <CiSearch className={`text-4xl cursor-pointer ${isHomePage ? (isScrolled ?  'text-white' : 'text-white' ) : (isScrolled ? 'text-white' : 'text-gray-900')} hidden lg:block`} />
+                        <div className="hover:bg-slate-400 hover:bg-opacity-20  rounded-full p-2 transition-all duration-500 cursor-pointer" onClick={console.log("rien pour l'insant")}>
+                            <CiSearch className={`text-4xl  ${isHomePage ? (isScrolled ?  'text-white' : 'text-white' ) : (isScrolled ? 'text-white' : 'text-gray-900')} hidden lg:block`} />
                         </div>
                     
-                        <div className="relative hover:bg-slate-400 hover:bg-opacity-20 rounded-full p-2 transition-all duration-500">
-                            <CiShoppingCart className={`text-4xl cursor-pointer ${isHomePage ? (isScrolled ? 'text-white' : 'text-white') : (isScrolled ? 'text-white' : 'text-gray-900')}`} onClick={toggleCart} />
+                        <div className="relative cursor-pointer hover:bg-slate-400 hover:bg-opacity-20 rounded-full p-2 transition-all duration-500" onClick={toggleCart}>
+                            <CiShoppingCart className={`text-4xl ${isHomePage ? (isScrolled ? 'text-white' : 'text-white') : (isScrolled ? 'text-white' : 'text-gray-900')}`}  />
                             {getTotalQuantity() > 0 && (
                                 <span className="badge">
                                     {getTotalQuantity()}

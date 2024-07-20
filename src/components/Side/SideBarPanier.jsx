@@ -6,23 +6,9 @@ import { FaTrashAlt } from 'react-icons/fa'; // Import trash icon
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import PanierCard from '../Cards/PanierCard';
+import { Link } from 'react-router-dom';
 
 const RightSidebar = ({ isOpen, toggleSidebar }) => {
-
-    const dispatch = useDispatch();
-
-    const getTotalQuantity = () => {
-        let total = 0
-        cart.forEach(item => {
-          total += item.quantity
-        })
-        return total
-      }
-
-    const menuItems = [
-        { name: 'Panier', path: '/cart' },
-        // ... autres éléments spécifiques au panier
-    ];
 
     const overlayStyle = {
         opacity: isOpen ? 1 : 0,
@@ -44,7 +30,7 @@ const RightSidebar = ({ isOpen, toggleSidebar }) => {
     return (
         <div className="fixed inset-0 z-50" style={overlayStyle}>
             <div className="absolute inset-0 bg-black bg-opacity-50" onClick={toggleSidebar} />
-            <div className="absolute right-0 top-0 bottom-0 bg-[#131313] sm:w-full md:w-2/3 lg:w-2/5 w-full" style={sidebarStyle}>
+            <div className="absolute right-0 top-0 bottom-0 bg-[#131313] sm:w-full md:w-2/3 lg:w-3/5 w-full" style={sidebarStyle}>
                 <button className="absolute top-0 right-0 m-8 text-white" onClick={toggleSidebar}>
                     <AiOutlineClose className="text-3xl" />
                 </button>
@@ -68,9 +54,11 @@ const RightSidebar = ({ isOpen, toggleSidebar }) => {
                                     </div>
                             </div>
                             <div className="mt-8">
-                                <button className="w-full bg-black text-white py-3 rounded mb-4" onClick={() => console.log("Go to cart")}>
-                                    Aller au panier
-                                </button>
+                                <Link to="/fullpanier">
+                                    <button className="w-full bg-black text-white py-3 rounded mb-4" onClick={toggleSidebar}>
+                                        Aller au panier
+                                    </button>
+                                </Link>
                                 <button className="w-full bg-white text-black py-3 rounded" onClick={() => console.log("Checkout")}>
                                     Commander
                                 </button>
