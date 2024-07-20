@@ -130,7 +130,7 @@ export const Home = () => {
                 </p>
             </div>
 
-            <div className='pt-10 pr-20 pl-20  xl:pt-10 xl:pr-20 xl:pl-20  md:pt-10  md:pr-20 md:pl-20  sm:pt-10  sm:pr-20 sm:pl-20'>
+            <div className='pt-10  xl:pt-10 xl:pr-20 xl:pl-20  md:pt-10  md:pr-10 md:pl-10  sm:pt-10  sm:pr-10 sm:pl-10 xs:pr-0 xs:pl-0'>
                 <Product/>    
             </div>
         </>

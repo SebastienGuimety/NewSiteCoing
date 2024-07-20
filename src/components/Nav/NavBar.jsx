@@ -16,7 +16,9 @@ const NavBar = ( ) => {
     const location = useLocation();
     const isHomePage = location.pathname === '/';
 
-    const cartItems = useSelector((state) => state.cartItems);
+
+    const cartItems = useSelector((state) => state.cart); // Ensure this matches your state structure
+
     const dispatch = useDispatch();
 
     const backgroundColor = isScrolled ? 'bg-[#131313]	' : 'bg-transparent'; // Modifier la couleur de fond uniquement sur la page d'accueil
@@ -46,6 +48,10 @@ const NavBar = ( ) => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+
+    const getTotalQuantity = () => {
+        return cartItems.reduce((acc, item) => acc + item.quantity, 0);
+    };
 
     return (
         <>
@@ -81,8 +87,13 @@ const NavBar = ( ) => {
                             <CiSearch className={`text-4xl cursor-pointer ${isHomePage ? (isScrolled ?  'text-white' : 'text-white' ) : (isScrolled ? 'text-white' : 'text-gray-900')} hidden lg:block`} />
                         </div>
                     
-                        <div className="hover:bg-slate-400 hover:bg-opacity-20 rounded-full p-2 transition-all duration-500 ">
-                            <CiShoppingCart className={`text-4xl cursor-pointer ${isHomePage ? (isScrolled ?  'text-white' : 'text-white' ) : (isScrolled ? 'text-white' : 'text-gray-900')}`} onClick={toggleCart} />
+                        <div className="relative hover:bg-slate-400 hover:bg-opacity-20 rounded-full p-2 transition-all duration-500">
+                            <CiShoppingCart className={`text-4xl cursor-pointer ${isHomePage ? (isScrolled ? 'text-white' : 'text-white') : (isScrolled ? 'text-white' : 'text-gray-900')}`} onClick={toggleCart} />
+                            {getTotalQuantity() > 0 && (
+                                <span className="badge">
+                                    {getTotalQuantity()}
+                                </span>
+                            )}
                         </div>
                     </div>
                   </div>
