@@ -70,7 +70,7 @@ const ProductDetail = () => {
           <div className="mt-4 md:text-left">
             <p className="font-bold">Quantity</p>
             <div className="flex md:justify-start mt-2">
-              <QuantitySelector onQuantityChange={setSelectedQuantity} />
+              <QuantitySelector onQuantityChange={setSelectedQuantity}/>
             </div>
           </div>
           <div className="flex justify-center md:justify-start mt-4 w-full">

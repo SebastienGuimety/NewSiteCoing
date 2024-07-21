@@ -3,8 +3,8 @@ import './QuantitySelector.css'; // Assurez-vous d'importer le fichier CSS
 import PlusIcon from '../../assets/svgs/PlusIcon';
 import MinusIcon from '../../assets/svgs/MinusIcon';
 
-const QuantitySelector = ({ onQuantityChange, showInput = true }) => {
-  const [quantity, setQuantity] = useState(1);
+const QuantitySelector = ({ onQuantityChange,initialQuantity, showInput = true }) => {
+  const [quantity, setQuantity] = useState(initialQuantity);
 
   const handleIncrement = () => {
     const newQuantity = quantity + 1;

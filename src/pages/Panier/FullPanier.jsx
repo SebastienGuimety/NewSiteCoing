@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { incrementQuantity, decrementQuantity, removeItem } from '../../redux/cartSlice';
 import QuantitySelector from '../../components/Buttons/QuantitySelector';
+import { Link } from 'react-router-dom';
 
 
 const FullPanier = () => {
@@ -14,9 +15,13 @@ const FullPanier = () => {
   const handleQuantityChange = (item, newQuantity) => {
     const quantityDiff = newQuantity - item.quantity;
     if (quantityDiff > 0) {
-      dispatch(incrementQuantity(item.id));
+      for (let i = 0; i < quantityDiff; i++) {
+        dispatch(incrementQuantity(item.id));
+      }
     } else if (quantityDiff < 0) {
-      dispatch(decrementQuantity(item.id));
+      for (let i = 0; i < -quantityDiff; i++) {
+        dispatch(decrementQuantity(item.id));
+      }
     }
   };
 
@@ -47,7 +52,7 @@ const FullPanier = () => {
               </td>
               <td className="p-4">
                 <div className="flex items-center">
-                  <QuantitySelector onQuantityChange={(newQuantity) => handleQuantityChange(item, newQuantity) } showInput={false} />
+                  <QuantitySelector onQuantityChange={(newQuantity) => handleQuantityChange(item, newQuantity) } showInput={false} initialQuantity={item.quantity}/>
 
                 </div>
                 <button
@@ -69,9 +74,11 @@ const FullPanier = () => {
         </div>
         <div className="text-right">
           <p className="text-2xl font-bold">Total: {calculateTotal()} €</p>
+          <Link to="/paiement" >
           <button className="bg-black text-white py-3 px-6 rounded mt-4">
             PASSER À LA CAISSE
           </button>
+          </Link>
         </div>
       </div>
       <div className="flex justify-end mt-4">
