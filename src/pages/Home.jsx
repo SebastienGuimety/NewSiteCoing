@@ -112,7 +112,7 @@ export const Home = () => {
                     ))}
                 </div>
 
-            <div className='pt-10  pr-20 pl-20  xl:pt-40  xl:pr-20 xl:pl-20  md:pt-40  md:pr-20 md:pl-20  sm:pt-30  sm:pr-20 sm:pl-20'>
+            <div className='pt-30 xl:pt-40  xl:pr-20 xl:pl-20  md:pt-40  md:pr-20 md:pl-20 sm:pt-30 sm:pr-5 sm:pl-5 xs:pt-20 xs:pr-5 xs:pl-5 2xs:pt-20 2xs:pr-5 2xs:pl-5'>
                 <p className='text-center font-nunito text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold'> 
                     <Trans i18nKey="home.section1.title"></Trans>
                 </p>
@@ -121,7 +121,7 @@ export const Home = () => {
                 </p>
             </div>
 
-            <div className='pt-10  pr-20 pl-20  xl:pt-40  xl:pr-20 xl:pl-20  md:pt-40  md:pr-20 md:pl-20  sm:pt-30  sm:pr-20 sm:pl-20'>
+            <div className='pt-10  pr-20 pl-20  xl:pt-40  xl:pr-20 xl:pl-20  md:pt-40  md:pr-20 md:pl-20  sm:pt-30  sm:pr-2 sm:pl-2 xs:pr-5 xs:pl-5 2xs:pr-5 2xs:pl-5'>
                 <p className='text-center font-nunito text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold'> 
                     <Trans i18nKey="home.section2.title"></Trans>
                 </p>

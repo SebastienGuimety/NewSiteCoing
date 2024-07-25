@@ -52,7 +52,7 @@ const ProductDetail = () => {
   const stockColor = product.stock > 50 ? 'bg-green-600' : 'bg-red-600';
 
   return (
-    <div className=" mx-auto px-20 py-20 pt-64">
+    <div className=" mx-auto px-20 py-20 pt-64 md:px-20 xs:px-5 2xs:px-5">
       <div className="flex flex-col md:flex-row items-start md:items-start">
         <div className="w-full md:w-1/2 flex justify-center items-center mb-4 md:mb-0">
           <img className="max-h-[500px] w-auto object-contain md:max-h-[700px]" src={product.imageLg} alt={product.title} />
@@ -70,7 +70,7 @@ const ProductDetail = () => {
           <div className="mt-4 md:text-left">
             <p className="font-bold">Quantity</p>
             <div className="flex md:justify-start mt-2">
-              <QuantitySelector onQuantityChange={setSelectedQuantity}/>
+              <QuantitySelector onQuantityChange={setSelectedQuantity} initialQuantity={1}/>
             </div>
           </div>
           <div className="flex justify-center md:justify-start mt-4 w-full">
