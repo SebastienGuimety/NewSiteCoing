@@ -21,7 +21,7 @@ const NavBar = ( ) => {
 
     const dispatch = useDispatch();
 
-    const backgroundColor = isScrolled ? 'bg-[#131313]	' : 'bg-transparent'; // Modifier la couleur de fond uniquement sur la page d'accueil
+    const backgroundColor = isScrolled ? 'bg-zinc-800	' : 'bg-transparent'; // Modifier la couleur de fond uniquement sur la page d'accueil
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);

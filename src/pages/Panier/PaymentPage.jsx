@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 const PaymentPage = () => {
   const cart = useSelector((state) => state.cart);
+
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('creditCard');
 
   const calculateTotal = () => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
@@ -12,6 +14,10 @@ const PaymentPage = () => {
     const total = parseFloat(calculateTotal());
     const taxRate = 0.2; // Exemple de taux de TVA de 20%
     return (total * taxRate).toFixed(2);
+  };
+
+  const handlePaymentMethodChange = (method) => {
+    setSelectedPaymentMethod(method);
   };
 
   return (
@@ -49,7 +55,7 @@ const PaymentPage = () => {
           <p className="text-gray-500 mt-2">Taxes de {calculateTax()} € incluse</p>
         </div>
       </div>
-      
+
       {/* Formulaire de livraison et de paiement */}
       <div className="md:w-3/5 p-4">
         <h2 className="text-xl font-bold mb-4">Contact</h2>
@@ -99,10 +105,10 @@ const PaymentPage = () => {
         <div className="mt-8">
           <h3 className="text-lg font-bold mb-2">Paiement</h3>
           <p>Toutes les transactions sont sécurisées et chiffrées.</p>
-          <form className="space-y-4">
-            <div className="border p-4 rounded">
-              <div className="flex items-center mb-4">
-                <input type="radio" id="creditCard" name="paymentMethod" value="creditCard" checked className="mr-2" />
+          <div className="space-y-4">
+            <div className="border p-4 rounded cursor-pointer" onClick={() => handlePaymentMethodChange('creditCard')}>
+              <div className="flex items-center">
+                <input type="radio" id="creditCard" name="paymentMethod" value="creditCard" checked={selectedPaymentMethod === 'creditCard'} onChange={() => handlePaymentMethodChange('creditCard')} className="mr-2" />
                 <label htmlFor="creditCard" className="text-lg font-semibold">Carte de crédit</label>
                 <div className="flex ml-auto">
                   <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Visa_2014_logo_detail.svg" alt="Visa" className="h-8 mr-2" />
@@ -110,28 +116,39 @@ const PaymentPage = () => {
                   <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Amex_logo.svg" alt="Amex" className="h-8" />
                 </div>
               </div>
-              <input type="text" placeholder="Numéro de carte" className="border p-2 w-full" />
-              <div className="flex space-x-4 mt-2">
-                <input type="text" placeholder="Date d'expiration (MM/AA)" className="border p-2 w-1/2" />
-                <input type="text" placeholder="Code de sécurité" className="border p-2 w-1/2" />
-              </div>
-              <input type="text" placeholder="Nom sur la carte" className="border p-2 w-full mt-2" />
-              <div className="flex items-center mt-2">
-                <input type="checkbox" id="billingSameAsShipping" checked className="mr-2" />
-                <label htmlFor="billingSameAsShipping">Utiliser l'adresse d'expédition comme adresse de facturation</label>
-              </div>
+              {selectedPaymentMethod === 'creditCard' && (
+                <div className="mt-4">
+                  <input type="text" placeholder="Numéro de carte" className="border p-2 w-full" />
+                  <div className="flex space-x-4 mt-2">
+                    <input type="text" placeholder="Date d'expiration (MM/AA)" className="border p-2 w-1/2" />
+                    <input type="text" placeholder="Code de sécurité" className="border p-2 w-1/2" />
+                  </div>
+                  <input type="text" placeholder="Nom sur la carte" className="border p-2 w-full mt-2" />
+                  <div className="flex items-center mt-2">
+                    <input type="checkbox" id="billingSameAsShipping" checked className="mr-2" />
+                    <label htmlFor="billingSameAsShipping">Utiliser l'adresse d'expédition comme adresse de facturation</label>
+
+                  </div>
+                  <button className="bg-black text-white py-3 px-6 rounded mt-4 w-full">Payer maintenant</button>
+
+                </div>
+              )}
             </div>
-            <div className="border p-4 rounded mt-4">
-              <div className="flex items-center mb-4">
-                <input type="radio" id="paypal" name="paymentMethod" value="paypal" className="mr-2" />
+            <div className="border p-4 rounded cursor-pointer" onClick={() => handlePaymentMethodChange('paypal')}>
+              <div className="flex items-center">
+                <input type="radio" id="paypal" name="paymentMethod" value="paypal" checked={selectedPaymentMethod === 'paypal'} onChange={() => handlePaymentMethodChange('paypal')} className="mr-2" />
                 <label htmlFor="paypal" className="text-lg font-semibold">PayPal</label>
               </div>
+              {selectedPaymentMethod === 'paypal' && (
+                <div className="mt-4">
+                  <p>Après avoir cliqué sur « Payer avec PayPal », vous serez redirigé(e) vers PayPal pour finaliser votre achat de façon sécurisée.</p>
+                  <button className="bg-blue-600 text-white py-2 px-4 rounded w-full mt-4">Payer avec PayPal</button>
+                </div>
+              )}
             </div>
-          </form>
-          <button className="bg-black text-white py-3 px-6 rounded mt-4 w-full">Payer maintenant</button>
+          </div>
         </div>
       </div>
-      
     </div>
   );
 };

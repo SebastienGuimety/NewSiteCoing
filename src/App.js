@@ -8,6 +8,8 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import FullPanier from "./pages/Panier/FullPanier";
 import PaymentPage from "./pages/Panier/PaymentPage";
+import Footer from "./pages/Footer";
+import ContactPage from "./pages/Contact";
 
 function App() {
   return (
@@ -21,9 +23,11 @@ function App() {
               <Route path="/" element={<Home/>}/>
               <Route path="/spiritueux" element={<Boutique/>}/>
               <Route path="/fullpanier" element={<FullPanier/>}/>
+              <Route path="/contact" element={<ContactPage/>}/>
               <Route path="/paiement" element={<PaymentPage/>}/>
               <Route path="/product/:id" element={<ProductDetail />} />
             </Routes>
+            <Footer />
           </Provider>
         </BrowserRouter>
     </>
